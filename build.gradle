@@ -1,0 +1,30 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = 'redis.client.gredis'
+version = '1.0.1'
+
+repositories {
+	mavenLocal()
+
+	mavenCentral()
+	mavenRepo urls: "http://groovypp.artifactoryonline.com/groovypp/libs-releases-local"
+	mavenRepo urls: "http://morphia.googlecode.com/svn/mavenrepo/"
+}
+
+dependencies {
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.0'
+	groovy group: 'org.apache.ivy', name: 'ivy', version: '2.2.0'
+	
+	compile group: 'org.slf4j', name:'slf4j-api', version: '1.6.4'
+	compile group: 'redis.clients', name:'jedis', version:'2.1.1'
+	runtime 'org.slf4j:slf4j-log4j12:1.6.4'
+	compile 'log4j:log4j:1.2.16'
+	
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
+	compile ('org.json:json:20090211') { exclude module: 'maven-cobertura-plugin' exclude module:'maven-findbugs-plugin'}
+	compile 'dsl.config:gdsl_mapping:1.0.0'
+	
+	testCompile group: 'junit', name: 'junit', version: '4.8.2'
+}
